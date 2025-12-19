@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getMyProfile } from "../api/api";
 import "./ContributeFeed.css";
 
-const API_URL = "http://localhost:3000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 function ContributeFeed() {
   const [posts, setPosts] = useState([]);

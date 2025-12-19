@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:3000"; // Backend URL
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000"; // Backend URL
 
 // Helper for requests with JWT
 const getAuthHeaders = () => {
@@ -191,7 +191,7 @@ export const getNotifications = async () => {
 
 export const sendMessageAPI = async (receiver_id, content) => {
   try {
-    const res = await fetch(`http://localhost:3000/message/send`, {
+    const res = await fetch(`${API_URL}/message/send`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -214,7 +214,7 @@ export const sendMessageAPI = async (receiver_id, content) => {
 export const getMessages = async (friend_id) => {
   try {
     const res = await fetch(
-      `http://localhost:3000/message/conversation/${friend_id}`,
+      `${API_URL}/message/conversation/${friend_id}`,
       {
         headers: {
           Authorization: `Bearer ${localStorage.getItem("token")}`,

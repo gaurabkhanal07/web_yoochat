@@ -30,7 +30,7 @@ const UserList = ({ users, type, token, onActionComplete, sentRequests, friends,
     <ul style={{ listStyle: "none", padding: 0 }}>
       {filteredUsers.map((user) => {
         const imageSrc = user.profile_image
-          ? `http://localhost:3000/${user.profile_image.replace(/\\/g, "/")}`
+          ? `${API_URL}/${user.profile_image.replace(/\\/g, "/")}`
           : "/default-avatar.png";
 
         return (

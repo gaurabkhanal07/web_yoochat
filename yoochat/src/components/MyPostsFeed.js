@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import { getMyPosts } from "../api/api";
 import "./MyPostsFeed.css";
 
-const API_URL = "http://localhost:3000";
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 function MyPostsFeed() {
   const [myPosts, setMyPosts] = useState([]);

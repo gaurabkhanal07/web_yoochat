@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "./EditProfile.css";
 
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 
 const EditProfile = ({ token }) => {
   const [username, setUsername] = useState("");
@@ -13,7 +14,7 @@ const EditProfile = ({ token }) => {
   useEffect(() => {
     // Load current profile
     axios
-      .get("http://localhost:3000/users/me", {
+      .get(`${API_URL}/users/me`, {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((res) => setCurrentProfile(res.data))
@@ -28,7 +29,7 @@ const EditProfile = ({ token }) => {
 
     try {
       const res = await axios.put(
-        "http://localhost:3000/users/update",
+        `${API_URL}/users/update`,
         formData,
         {
           headers: {
@@ -71,7 +72,7 @@ const EditProfile = ({ token }) => {
 
         {currentProfile.profileImage && (
           <img
-            src={`http://localhost:3000/${currentProfile.profileImage}`}
+            src={`${API_URL}/${currentProfile.profileImage}`}
             alt="Profile"
             width={100}
           />

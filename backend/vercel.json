@@ -1,0 +1,25 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "app.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/uploads/(.*)",
+      "dest": "/uploads/$1"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/app.js"
+    }
+  ],
+  "env": {
+    "DATABASE_URL": "@database_url",
+    "secret_key": "@secret_key",
+    "hill_key": "@hill_key",
+    "FRONTEND_URL": "@frontend_url"
+  }
+}

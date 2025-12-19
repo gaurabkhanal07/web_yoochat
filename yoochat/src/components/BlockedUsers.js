@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import "./BlockedUsers.css";
-
+const API_URL = process.env.REACT_APP_API_URL || "http://localhost:3000";
 function BlockedUsers({ token }) {
   const [blocked, setBlocked] = useState([]);
 
   useEffect(() => {
     const fetchBlocked = async () => {
       try {
-        const res = await axios.get("http://localhost:3000/api/users/blocked", {
+        const res = await axios.get(`${API_URL}/api/users/blocked`, {
           headers: { Authorization: `Bearer ${token}` },
         });
         setBlocked(res.data);
@@ -22,7 +22,7 @@ function BlockedUsers({ token }) {
   const handleUnblock = async (blocked_id) => {
     try {
       await axios.post(
-        "http://localhost:3000/api/users/unblock",
+        `${API_URL}/api/users/unblock`,
         { blocked_id },
         { headers: { Authorization: `Bearer ${token}` } }
       );
